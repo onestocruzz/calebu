@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OKOLEA CHAPCHAP</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset styles for consistency across browsers */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-color: #002bff;
+      --primary-hover: #0048b3;
+      --bg-color: #008000;
+      --container-bg: #90EE90;
+      --text-light: #FFFFFF;
+      --text-dark: #000000;
+      --text-secondary: #333;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      --border-radius: 8px;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif; /* Changed to Poppins */
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    /* Header styles */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header img {
+      width: 120px; /* Adjusted size */
+      height: 120px;
+      border-radius: 50%; /* Made logo round */
+      margin-bottom: 10px;
+      background-color: #f0f0f0; /* Placeholder bg */
+      object-fit: cover;
+    }
+    
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+      font-weight: 400;
+    }
+
+    /* Container for pages */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--container-bg);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Buttons style */
+    button {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      border: none;
+      padding: 12px 24px;
+      margin: 10px 0;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.3s;
+      width: 100%; /* Make buttons full-width for consistency */
+    }
+    
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Inputs style */
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    input[type=date],
+    input[type=number],
+    input[type=password],
+    select {
+      width: 100%;
+      padding: 12px; /* Increased padding */
+      margin: 8px 0 16px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    label {
+      font-weight: 500;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #34495e;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Section styling */
+    .section {
+      margin-bottom: 20px;
+    }
+
+    /* Highlighted or bold text */
+    .bold-color {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Specific styles for highlighted amounts or labels */
+    .highlight {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    
+    /* For hidden pages */
+    .hidden {
+      display: none;
+    }
+    /* For showing active pages */
+    .active {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+    
+    /* --- NEW STYLES FOR LOAN AMOUNT GRID --- */
+    .loan-options-grid {
+        display: grid;
+        /* Responsive grid: 2 columns on mobile, 3 on larger screens */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .loan-option-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        padding: 20px 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        font-family: 'Poppins', sans-serif;
+        /* Reset button styles */
+        width: 100%;
+        margin: 0;
+    }
+
+    .loan-option-btn:hover {
+        background: #e9ecef;
+        box-shadow: var(--shadow);
+        transform: translateY(-3px);
+    }
+
+    .loan-option-btn strong {
+        font-size: 1.1rem; /* Adjusted size */
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+
+    .loan-option-btn span {
+        font-size: 0.9rem;
+        color: #555;
+    }
+    /* --- END OF NEW STYLES --- */
+
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header h1 { font-size: 28px; } 
+      h2 { font-size: 18px; }
+      .container { padding: 20px; }
+      
+      .loan-option-btn strong { font-size: 1rem; }
+      .loan-option-btn span { font-size: 0.85rem; }
+    }
+    
+    @media (min-width: 601px) {
+       /* 3 columns for larger screens */
+       .loan-options-grid {
+           grid-template-columns: repeat(3, 1fr);
+       }
+       
+       /* Make standard buttons not full width on desktop */
+       button:not(.loan-option-btn) {
+           width: auto;
+           min-width: 200px;
+       }
+       /* Center-align buttons in their forms */
+       form, #page-welcome, #page-dashboard, #page-faqs, #page-confirmation, #page-application > div {
+           text-align: center;
+       }
+       #page-loan-summary {
+           text-align: center;
+       }
+    }
+  </style>
+
+  <!-- Paystack Script -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  
+  <!-- Meta Pixel Script -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR-PIXEL-ID-HERE'); // IMPORTANT: Replace with your actual Pixel ID
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR-PIXEL-ID-HERE&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Script -->
+  
+</head>
+<body>
+  <header>
+    <!-- Using a placeholder for the logo as the original path was relative -->
+    <img src="https://placehold.co/120x120/FFFFFF/008000?text=Logo" alt="Okolea ChapChap Logo" 
+         onerror="this.src='https://placehold.co/120x120/FFFFFF/008000?text=Logo';">
+    <h1>OKOLEA CHAPCHAP</h1>
+    <h2>Apply, Borrow, Repay your Loan Instantly!</h2>
+  </header>
+
+  <div class="container">
+    <section id="page-welcome" class="page active">
+      <p>Welcome to our loan platform! Start your journey today.</p>
+      <button id="start-btn" aria-controls="page-register" aria-expanded="false">APPLY NOW</button>
+    </section>
+
+    <section id="page-register" class="page hidden">
+      <h3>Register</h3>
+      <form id="register-form" autocomplete="off" aria-labelledby="register-label">
+        <label id="register-label" style="display:none;">Registration Form</label>
+        
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required />
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter a valid email" required />
+
+        <label for="phone">Phone number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="e.g., 0712345678" required />
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required />
+
+        <label for="pin">PIN (4 Digits):</label>
+        <input type="password" id="pin" name="pin" placeholder="Enter 4-digit PIN" required maxlength="4" inputmode="numeric" />
+
+        <label for="confirmPin">Confirm PIN:</label>
+        <input type="password" id="confirmPin" name="confirmPin" placeholder="Confirm 4-digit PIN" required maxlength="4" inputmode="numeric" />
+
+        <button type="button" id="register-submit">REGISTER</button>
+        <button type="button" id="to-login" style="background-color: #6c757d;">Already have an account? Login</button>
+      </form>
+    </section>
+
+    <section id="page-login" class="page hidden">
+      <h3>Login</h3>
+      <form id="login-form" autocomplete="off" aria-labelledby="login-label">
+        <label id="login-label" style="display:none;">Login Form</label>
+        <label for="login-phone">Number:</label>
+        <input type="tel" id="login-phone" placeholder="Enter your number" required />
+
+        <label for="login-pin">PIN:</label>
+        <input type="password" id="login-pin" placeholder="Enter your PIN" required maxlength="4" inputmode="numeric" />
+
+        <button type="button" id="login-btn">LOGIN</button>
+        <button type="button" id="back-to-register" style="background-color: #6c757d;">Back to Register</button>
+      </form>
+    </section>
+
+    <section id="page-dashboard" class="page hidden">
+      <h3>Welcome, <span id="user-name"></span></h3>
+
+      <button id="apply-loan-btn">Application</button>
+
+      <div class="section" id="loan-status-section">
+        <h4>Current Loan Status</h4>
+        <p><span class="highlight" id="current-loan-status">You currently don't have any loan in progress.</span></p>
+      </div>
+
+      <div class="section" id="help-section">
+        <h4><span class="bold-color">Need Help?</span></h4>
+        <button id="view-faqs-btn" style="background-color: #17a2b8;">View FAQs</button>
+      </div>
+
+      <button id="logout-btn" style="background-color: #dc3545;">Logout</button>
+    </section>
+
+    <section id="page-faqs" class="page hidden">
+      <h3>FAQs</h3>
+      <div>
+        <p><strong>Q: How is interest calculated on the loan?</strong></p>
+        <p>A: We use the formula: interest = 7% * loan amount borrowed * period (in months).</p>
+        
+        <p><strong>Q: How is the loan disbursed?</strong></p>
+        <p>A: We disburse only to M-pesa numbers.</p>
+        
+        <p><strong>Q: What is the Commitment Fee?</strong></p>
+        <p>A: The commitment fee is a small, one-time processing fee required to secure your loan amount. It is paid via our secure Paystack gateway.</p>
+      </div>
+      <button id="faqs-back-btn">Back</button>
+    </section>
+
+    <section id="page-application" class="page hidden">
+      <h3>Apply for Loan</h3>
+      <div>
+        <p><span class="bold-color">Purpose of Loan:</span> Please select reason as to why you need a loan (select below).</p>
+        <select id="loan-reason" required>
+          <option value="">--Please choose reason--</option>
+          <option value="Business">Business loan</option>
+          <option value="Education">Education loan</option>
+          <option value="Farming">Farming loan</option>
+          <option value="Medication">Medication loan</option>
+          <option value="Emergency">Emergency loan</option>
+        </select>
+        <button id="continue-loan-purpose">Continue</button>
+      </div>
+    </section>
+
+    <section id="page-loan-details" class="page hidden">
+      <h3>Loan Details</h3>
+      <p>Please answer the questions below:</p>
+      <form>
+        <label for="county">1. Which is your County?</label>
+        <select id="county" required>
+          <option value="">--Choose one--</option>
+          <option value="Nairobi">Nairobi</option>
+          <option value="Mombasa">Mombasa</option>
+          <option value="Nakuru">Nakuru</option>
+          <option value="Kericho">Kericho</option>
+          <option value="Bomet">Bomet</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="crb">2. Are you listed in CRB?</label>
+        <select id="crb" required>
+          <option value="">--Select--</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+        <label for="maritalStatus">3. Marital Status?</label>
+        <select id="maritalStatus" required>
+          <option value="">--Select--</option>
+          <option value="Married">Married</option>
+          <option value="Single">Single</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="educationLevel">4. Level of Education?</label>
+        <select id="educationLevel" required>
+          <option value="">--Select--</option>
+          <option value="Primary">Primary</option>
+          <option value="Secondary">Secondary</option>
+          <option value="College">College</option>
+          <option value="University">University</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <button type="button" id="continue-loan-details">Continue</button>
+      </form>
+    </section>
+
+    <!-- ### MODIFIED SECTION ### -->
+    <!-- This page now shows the grid from your image -->
+    <section id="page-loan-amount" class="page hidden">
+      <h3>Select Your Loan Amount</h3>
+      <div class="loan-options-grid" id="loan-options-grid">
+        <!-- Buttons are generated from your image. -->
+        <!-- Each button has data-loan-amount and data-fee -->
+        <button class="loan-option-btn" data-loan-amount="5500" data-fee="50">
+          <strong>Ksh 5,500</strong><span>Fee: Ksh 50</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="6800" data-fee="80">
+          <strong>Ksh 6,800</strong><span>Fee: Ksh 80</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="7800" data-fee="120">
+          <strong>Ksh 7,800</strong><span>Fee: Ksh 120</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="9800" data-fee="140">
+          <strong>Ksh 9,800</strong><span>Fee: Ksh 140</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="11200" data-fee="180">
+          <strong>Ksh 11,200</strong><span>Fee: Ksh 180</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="16800" data-fee="200">
+          <strong>Ksh 16,800</strong><span>Fee: Ksh 200</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="21200" data-fee="220">
+          <strong>Ksh 21,200</strong><span>Fee: Ksh 220</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="25600" data-fee="350">
+          <strong>Ksh 25,600</strong><span>Fee: Ksh 350</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="30000" data-fee="420">
+          <strong>Ksh 30,000</strong><span>Fee: Ksh 420</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="35400" data-fee="540">
+          <strong>Ksh 35,400</strong><span>Fee: Ksh 540</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="39800" data-fee="680">
+          <strong>Ksh 39,800</strong><span>Fee: Ksh 680</span>
+        </button>
+        <button class="loan-option-btn" data-loan-amount="44200" data-fee="960">
+          <strong>Ksh 44,200</strong><span>Fee: Ksh 960</span>
+        </button>
+      </div>
+    </section>
+    <!-- ### END OF MODIFIED SECTION ### -->
+
+
+    <!-- ### MODIFIED SECTION ### -->
+    <!-- This page now shows the selected loan and fee -->
+    <section id="page-loan-summary" class="page hidden">
+      <h3>Confirm Your Selection</h3>
+      <p style="font-size: 1.1rem;">Please confirm your selected loan and the required commitment fee.</p>
+      
+      <p style="margin-top: 20px;">Loan Amount: <span class="bold-color" id="loan-amount-summary"></span></p>
+      <p>Commitment Fee: <span class="bold-color" id="fee-amount-summary"></span></p>
+      
+      <hr style="margin: 20px 0;">
+      
+      <label for="loan-duration" class="bold-color">Please choose the loan duration:</label>
+      <select id="loan-duration" required>
+        <option value="">--Select duration--</option>
+        <option value="3">3 months</option>
+        <option value="4">4 months</option>
+        <option value="5">5 months</option>
+        <option value="6">6 months</option>
+        <option value="7">7 months</option>
+        <option value="8">8 months</option>
+        <option value="9">9 months</option>
+        <option value="10">10 months</option>
+        <option value="12">12 months (1 year)</option>
+      </select>
+      
+      <!-- This p tag is now hidden, as interest calc is removed from this step -->
+      <p class="hidden">Amount to repay: <span class="bold-color" id="repay-amount"></span></p>
+      
+      <button id="confirm-loan-btn">PAY COMMITMENT FEE & SUBMIT</button>
+    </section>
+    <!-- ### END OF MODIFIED SECTION ### -->
+
+    
+    <section id="page-confirmation" class="page hidden">
+      <h3>Application Submitted</h3>
+      <!-- Message is now set dynamically in JS -->
+      <p id="confirmation-message"></p>
+      <button id="back-to-dashboard">Back to Dashboard</button>
+    </section>
+    
+    </div> <!-- End .container -->
+    
+  <footer>
+    <p>&copy; 2023-2025 OKOLEA CHAPCHAP. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // In-memory data storage to simulate a backend
+    // The 'users' object acts as our database. The phone number is the unique key.
+    let users = {}; // key: phone, value: { firstName, lastName, email, dob, pin, loan }
+    let currentUser = null;
+    let loanApplication = {}; // to store application info during the process
+    
+    // **IMPORTANT**: This is your LIVE public key.
+    const PAYSTACK_PUBLIC_KEY = 'pk_live_a015627527dc4e8e566c8c607267d8ae0f269b7e'; 
+
+    // --- Helper Functions ---
+    function showPage(pageId) {
+      // Hide all pages first
+      document.querySelectorAll('.page').forEach(p => {
+        p.classList.add('hidden');
+        p.classList.remove('active');
+      });
+      
+      // Show the requested page if it exists
+      const page = document.getElementById(pageId);
+      if (page) {
+        page.classList.remove('hidden');
+        page.classList.add('active');
+        window.scrollTo(0, 0); // Scroll to top on page change
+      } else {
+        // Log an error to the console if the page ID is not found
+        console.error(`Error: Page with ID "${pageId}" not found.`);
+      }
+    }
+    
+    // Simple custom alert
+    function showCustomAlert(message) {
+        // Using native alert for simplicity as per original code.
+        // For a better UX, replace this with a modal dialog.
+        alert(message);
+    }
+
+    function updateDashboard() {
+      if (!currentUser) return;
+      document.getElementById('user-name').textContent = currentUser.firstName;
+      const userLoan = users[currentUser.phone]?.loan;
+      if (userLoan) {
+        document.getElementById('current-loan-status').textContent = `Your loan of Ksh ${userLoan.amount.toLocaleString()} is ${userLoan.status}.`;
+      } else {
+        document.getElementById('current-loan-status').textContent = "You currently don't have any loan in progress.";
+      }
+    }
+    
+    // --- REMOVED ---
+    // The random fee generator is no longer needed.
+    // function generateCommitmentFee() { ... }
+    
+    // Paystack payment function
+    function payCommitmentFee(amount, email, ref, onSuccess, onError) {
+        // Amount is passed to Paystack in Kobo, so multiply by 100
+        const amountInKobo = Math.round(amount * 100); 
+
+        if (typeof PaystackPop === 'undefined') {
+            showCustomAlert('Payment script not loaded. Please check your internet connection and refresh.');
+            return;
+        }
